@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Nosifer&display=swap");
+body {
+  background-color: burlywood;
+}
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  box-sizing: border-box;
+}
+.heading {
+  font-family: "Nosifer", cursive;
+  text-align: start;
+  padding: 10px;
+  font-weight: 800;
+  color: rgb(15, 7, 29);
+}
+.showList {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.container {
+  color: white;
+  margin: auto;
+  width: 80%;
+  height: 300px;
+  padding: 20px;
+  background: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  background-position: center;
+}
+.option {
+  padding: 5px;
+}
+.opt {
+  cursor: pointer;
+}
+
+.searchBox {
+  border: none;
+  margin: 10px;
+  padding: 10px;
+  height: 20px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+.poster {
+  width: 200px;
+  height: auto;
+  margin: 10px;
+  color: white;
+  background: rgb(32, 17, 34);
+  border-radius: 10px;
+  text-align: start;
+}
+img {
+  width: 200px;
+  height: 200px;
+}
+#details {
+  display: flex;
+  position: fixed;
+  top: 20%;
+  left: 20%;
+  margin-right: -50%;
+  margin-bottom: -50%;
+  flex-wrap: wrap;
+  padding: 10px;
+  width: 60vw;
+  height: auto;
+  margin: 10px;
+  color: white;
+  background: rgb(20, 3, 14);
+  border-radius: 20px;
+  text-align: start;
+  z-index: 100;
+}
+.showData {
+  margin: 10px;
+  line-height: 20px;
+}
+details {
+  cursor: pointer;
+}
+.cancel {
+  color: red;
+  font-weight: bolder;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+a {
+  color: burlywood;
+  font-weight: bold;
+  text-decoration: none;
+}
