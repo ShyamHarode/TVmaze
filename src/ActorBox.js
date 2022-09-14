@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import No_Image from "./image/No_Image.jpg";
 
 const ActorBox = (props) => {
   let person = props.showDetails.person;
@@ -8,7 +9,7 @@ const ActorBox = (props) => {
       {person.image ? (
         <img src={person.image.medium} alt="NA" />
       ) : (
-        <img src={require("./image/No_Image.jpg")} alt="NOT" />
+        <img src={No_Image} alt="NA" />
       )}
       <div className="showData">
         <span>{person.name}</span>
