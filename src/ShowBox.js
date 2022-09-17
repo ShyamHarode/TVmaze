@@ -4,7 +4,7 @@ import ShowDetails from "./ShowDetails";
 import No_Image from "./image/No_Image.jpg";
 
 const ShowBox = (props) => {
-  let show = props.showDetails.show;
+  let show = props.show;
   return (
     <div className="poster">
       {show.image ? (
