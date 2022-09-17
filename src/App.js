@@ -3,7 +3,6 @@ import AllShows from "./AllShows";
 import Loading from "./Loading";
 import { debounce } from "lodash";
 import stream from "./image/stream.jpg";
-
 import "./styles.css";
 
 export default function App() {
@@ -18,15 +17,60 @@ export default function App() {
     setSearchItem(input);
   }, 500);
 
+  const handleClick = (e) => {
+    if (
+      e.target.tagName !== "INPUT" &&
+      e.target.tagName !== "LABEL" &&
+      e.target.id === "box"
+    ) {
+      document.getElementById("opt1").checked = false;
+      document.getElementById("opt2").checked = false;
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", handleClick);
+
+    return () => {
+      window.removeEventListener("click", handleClick);
+    };
+  }, []);
+
+  const getShow = async (data) => {
+    try {
+      let actorData = data[0];
+      let id = actorData.person.id;
+      let url1 = `https://api.tvmaze.com/people/${id}/castcredits?embed=show`;
+      const response1 = await fetch(url1);
+      const data1 = await response1.json();
+      setShowList(data1);
+    } catch (error) {
+      console.log(error, "catch");
+    }
+  };
+
   const getData = async () => {
-    const url =
-      option === "Show"
-        ? `https://api.tvmaze.com/search/shows?q=${searchItem}`
-        : `https://api.tvmaze.com/search/people?q=${searchItem}`;
-    setLoading(true);
-    const response = await fetch(url);
-    const data = await response.json();
-    setShowList(data);
+    try {
+      const url =
+        (option === "Show" &&
+          searchItem !== "" &&
+          `https://api.tvmaze.com/search/shows?q=${searchItem}`) ||
+        (option === "Actor" &&
+          searchItem !== "" &&
+          `https://api.tvmaze.com/search/people?q=${searchItem}`) ||
+        (option === "" && "https://api.tvmaze.com/shows?page=1");
+
+      setLoading(true);
+      const response = await fetch(url);
+      const data = await response.json();
+      if (option === "Actor") {
+        getShow(data);
+      } else {
+        setShowList(data);
+      }
+    } catch (error) {
+      console.log(error, "catch");
+    }
     setLoading(false);
   };
 
@@ -44,7 +88,11 @@ export default function App() {
   return (
     <div className="App">
       <h1 className="heading">TV maze</h1>
-      <div className="container" style={{ backgroundImage: `url(${stream})` }}>
+      <div
+        id="box"
+        className="container"
+        style={{ backgroundImage: `url(${stream})` }}
+      >
         <h2>Search Your Favourite Shows</h2>
         <div className="option" onChange={handleOption}>
           <input type="radio" id="opt1" name="option" value="Actor" />
@@ -56,12 +104,10 @@ export default function App() {
             Show
           </label>
         </div>
-        {/* <form onSubmit={(e) => handleSearch(e)}> */}
         <label>
           {option === "Show" ? "Enter show below" : "Enter people below"}
         </label>
         <br />
-        {console.log(searchItem)}
         <input
           type="text"
           className="searchBox"
@@ -72,10 +118,10 @@ export default function App() {
         {showList.length === 0 && searchItem !== "" && (
           <span style={{ color: "red" }}>No Result Found!</span>
         )}
-        {/* </form> */}
       </div>
       {loading && <Loading />}
-      <AllShows showList={showList} option={option} />
+      <AllShows showList={showList} searchItem={searchItem} option={option} />
     </div>
   );
 }
+
