@@ -109,7 +109,7 @@ export default function App() {
         </label>
         <br />
         <input
-          type="text"
+          type="search"
           className="searchBox"
           defaultValue={searchItem}
           onChange={handleSearch}
