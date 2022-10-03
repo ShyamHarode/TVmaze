@@ -10,11 +10,13 @@ const ShowDetails = (props) => {
       <span className="cancel" onClick={() => setDetails(false)}>
         &#10060;
       </span>
-      {show.image ? (
-        <img src={show.image.medium} alt="NA" />
-      ) : (
-        <img src={No_Image} alt="NOT" />
-      )}
+      <a href={show.url} target="_blank" rel="noreferrer">
+        {show.image ? (
+          <img src={show.image.medium} alt="NA" />
+        ) : (
+          <img src={No_Image} alt="NOT" />
+        )}
+       </a>
       <div className="showData">
         <h3>{show.name}</h3>
         <span>Language: {show.language}</span>
