@@ -7,13 +7,13 @@ const ShowBox = (props) => {
   let show = props.show;
   return (
     <div className="poster">
-      {show.image ? (
-        <a href={show.url} target="_blank" rel="noreferrer">
-        <img src={show.image.medium} alt="NA" />
-        </a>
-      ) : (
-        <img src={No_Image} alt="NOT" />
-      )}
+      <a href={show.url} target="_blank" rel="noreferrer">
+       {show.image ? (
+          <img src={show.image.medium} alt="NA" />     
+        ) : (
+          <img src={No_Image} alt="NOT" />
+        )}
+      </a>
       <div className="showData">
         <span style={{ fontWeight: "bold" }}>{show.name}</span>
         <br />
