@@ -8,7 +8,9 @@ const ShowBox = (props) => {
   return (
     <div className="poster">
       {show.image ? (
+        <a href={show.url} target="_blank" rel="noreferrer">
         <img src={show.image.medium} alt="NA" />
+        </a>
       ) : (
         <img src={No_Image} alt="NOT" />
       )}
