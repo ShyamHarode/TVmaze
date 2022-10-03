@@ -55,6 +55,10 @@ body {
   background: rgb(32, 17, 34);
   border-radius: 10px;
   text-align: start;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.poster:hover {
+  box-shadow: 5px 15px 15px rgba(5, 1, 8, 0.8);
 }
 img {
   width: 200px;
@@ -96,4 +100,12 @@ a {
   color: burlywood;
   font-weight: bold;
   text-decoration: none;
+}
+@media only screen and (max-width: 600px) {
+  #details {
+    top: 15%;
+    left: 15%;
+    height: 75vh;
+    overflow-y: hidden;
+  }
 }
